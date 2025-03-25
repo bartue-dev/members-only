@@ -54,6 +54,16 @@ app.use("/sign-up", signupRouter);
 app.post("/log-in", passport.passportAuth)
 app.use("/home", homeRouter);
 
+app.get("/log-out", (req, res, next) => {
+  req.logout((error) => {
+    if (error) {
+      return next(error);
+    }
+
+    res.redirect("/")
+  });
+});
+
 //error middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
