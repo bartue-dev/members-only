@@ -1,0 +1,11 @@
+<div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+  <% if (errors) { %>
+    <ul>
+      <% errors.forEach(error=> { %>
+        <li class="text-sm/6 font-medium text-red-500">
+          <%= error.msg %>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>
+</div>
