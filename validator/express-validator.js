@@ -12,8 +12,16 @@ const validateSignup = [
   body("confirm-password").custom((value, { req }) => {
     return value === req.body.password
   }).withMessage(`Password ${confirmPw}`)
-]
+];
+
+const validatePost = [
+  body("title").trim()
+    .notEmpty().withMessage(`Invalid title`),
+  body("message").trim()
+    .notEmpty().withMessage(`Post message ${emptyMsg}`)
+];
 
 module.exports = {
-  validateSignup
+  validateSignup,
+  validatePost
 }
