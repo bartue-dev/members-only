@@ -12,6 +12,9 @@ require("dotenv").config()
 const indexRouter = require("./routes/indexRouter");
 const signupRouter = require("./routes/signupRouter");
 const homeRouter = require("./routes/homeRouter");
+const postRouter = require("./routes/postRouter");
+const settingsRouter = require("./routes/settingsRouter");
+const faqRouter = require("./routes/faqRouter");
 
 //connect ejs
 app.set("views", path.join(__dirname, "views"));
@@ -46,6 +49,11 @@ passport.passportDeserializeUser;
 
 //routes
 app.use((req, res, next) => {
+  res.locals.currentUser = req.user
+  next();
+});
+
+app.use((req, res, next) => {
   console.log("session:", req.session);
   console.log("user:", req.user)
   next();
@@ -54,7 +62,9 @@ app.use("/", indexRouter);
 app.use("/sign-up", signupRouter);
 app.post("/log-in", passport.passportAuth)
 app.use("/home", homeRouter);
-
+app.use("/posts", postRouter);
+app.use("/settings", settingsRouter);
+app.use("/faq", faqRouter);
 app.get("/log-out", (req, res, next) => {
   req.logout((error) => {
     if (error) {
