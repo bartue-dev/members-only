@@ -14,8 +14,15 @@ async function getMyPost(user_id) {
   return rows;
 }
 
+async function getAllPost() {
+  const { rows } = await pool.query("SELECT post.title, post.message, users.username FROM post INNER JOIN users ON users.user_id = post.user_id");
+
+  return rows;
+}
+
 module.exports = {
   signUpUser,
   addPost,
-  getMyPost
+  getMyPost,
+  getAllPost
 }
