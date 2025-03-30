@@ -15,14 +15,36 @@ async function getMyPost(user_id) {
 }
 
 async function getAllPost() {
-  const { rows } = await pool.query("SELECT post.title, post.message, users.username FROM post INNER JOIN users ON users.user_id = post.user_id");
+  const { rows } = await pool.query("SELECT post.post_id, post.title, post.message, users.username FROM post INNER JOIN users ON users.user_id = post.user_id");
 
   return rows;
+}
+
+async function toggleMembership(user_id) {
+  await pool.query("UPDATE users SET ismember = true WHERE user_id = $1", [user_id]);
+}
+
+async function deletePost(post_id) {
+  await pool.query("DELETE FROM post WHERE post_id = $1", [post_id]);
+};
+
+async function getAllUsers() {
+  const { rows } = await pool.query("SELECT user_id, username, ismember, isadmin FROM users");
+
+  return rows;
+}
+
+async function deleteUser(user_id) {
+  await pool.query("DELETE FROM users WHERE user_id = $1", [user_id]);
 }
 
 module.exports = {
   signUpUser,
   addPost,
   getMyPost,
-  getAllPost
+  getAllPost,
+  toggleMembership,
+  deletePost,
+  getAllUsers,
+  deleteUser
 }
