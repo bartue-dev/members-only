@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const session = require("express-session");
 const path = require("node:path");
@@ -7,7 +8,6 @@ const pgSession = require("connect-pg-simple")(session);
 const pool = require("./db/pool");
 
 const app = express();
-require("dotenv").config()
 
 const indexRouter = require("./routes/indexRouter");
 const signupRouter = require("./routes/signupRouter");
