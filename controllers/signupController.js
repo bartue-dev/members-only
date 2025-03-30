@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const db = require("../db/queries");
 const { validateSignup } = require("../validator/express-validator");
 
-
 exports.getSignUpForm = asyncHandler(async (req, res, next) => {
   res.render("sign-up", {
     title: "Sign Up",
@@ -12,6 +11,7 @@ exports.getSignUpForm = asyncHandler(async (req, res, next) => {
   })
 });
 
+//pass validateSignUp to validate the user data before post request
 exports.postSignUp = [ validateSignup,  asyncHandler(async (req, res, next) => {
   const errors = validationResult(req);
   const { username } = req.body
