@@ -43,21 +43,23 @@ app.use(passport.passportSession);
 //turn req.body into object
 app.use(express.urlencoded({ extended: true}));
 
+//import passportjs
 passport.passportLocalStrat;
 passport.passportSerializeUser;
 passport.passportDeserializeUser;
 
 //routes
+// current user available to any ejs file or UI
 app.use((req, res, next) => {
   res.locals.currentUser = req.user
   next();
 });
 
-app.use((req, res, next) => {
-  console.log("session:", req.session);
-  console.log("user:", req.user)
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("session:", req.session);
+//   console.log("user:", req.user)
+//   next();
+// });
 app.use("/", indexRouter);
 app.use("/sign-up", signupRouter);
 app.post("/log-in", passport.passportAuth)
