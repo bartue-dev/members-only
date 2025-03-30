@@ -30,7 +30,7 @@ app.use(session({
     pool: pool,
     tableName: "session"
   }),
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || "pogi",
   resave: false,
   saveUninitialized: false,
   cookie: {
