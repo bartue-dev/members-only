@@ -10,3 +10,11 @@ exports.getPost = asyncHandler(async (req, res, next) => {
     allPost: allPost
   });
 });
+
+exports.postDeletePost = asyncHandler(async (req, res, next) => {
+  const { post_id } = req.params;
+  
+  await db.deletePost(post_id);
+
+  res.redirect("/posts");
+});
