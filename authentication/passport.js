@@ -64,7 +64,7 @@ const passportDeserializeUser = passport.deserializeUser(async (id, done) => {
 const passportAuth = passport.authenticate("local", {
   successRedirect: "/home",
   failureRedirect: "/",
-  failureMessage: true
+  failureMessage: true //set true to be able to access the failure msg
 })
 
 module.exports = {
