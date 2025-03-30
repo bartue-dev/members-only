@@ -7,10 +7,12 @@ exports.getHome = asyncHandler(async (req, res, next) => {
   const user_id = req.user.user_id;
 
   const myPost = await db.getMyPost(user_id);
-
+  const allUsers = await db.getAllUsers();
+  
   res.render("home", {
     title: "Home",
     myPost: myPost,
+    allUsers: allUsers,
     errors: []
   });
 });
@@ -34,3 +36,11 @@ exports.addPost = [validatePost, asyncHandler(async (req, res, next) => {
   res.redirect("/home");
 })
 ];
+
+exports.postDeleteUser = asyncHandler(async (req, res, next) => {
+  const { user_id } = req.params;
+
+  await db.deleteUser(user_id);
+
+  res.redirect("/home")
+});
