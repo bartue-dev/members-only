@@ -38,6 +38,10 @@ async function deleteUser(user_id) {
   await pool.query("DELETE FROM users WHERE user_id = $1", [user_id]);
 }
 
+async function toggleisAdmin(user_id) {
+  await pool.query("UPDATE users SET isadmin = true WHERE user_id = $1", [user_id]);
+}
+
 module.exports = {
   signUpUser,
   addPost,
@@ -46,5 +50,6 @@ module.exports = {
   toggleMembership,
   deletePost,
   getAllUsers,
-  deleteUser
+  deleteUser,
+  toggleisAdmin
 }
