@@ -30,7 +30,11 @@ CREATE TABLE IF NOT EXISTS "session" (
 )
 WITH (OIDS=FALSE);
 
+<<<<<<< HEAD
 CREATE INDEX IF NOT EXISTS "IDX_session_expire" ON "session" ("expire");
+=======
+CREATE INDEX "IDX_session_expire" ON "session" ("expire");
+>>>>>>> d1d2b76e196a7aedd5772a033898140072652c71
 
 `
 
