@@ -176,166 +176,219 @@
           <!-- message -->
           <div>
             <p>
-              Congratulations you are a member now!, </br>
-              there's no right or wrong answer from the quiz you took. </br>
-              Thank you for participatiing.
+              Congratulations you are a member <%= currentUser.isadmin ? "and admin" : "" %> now!, </br>
+                there's no right or wrong answer to become a member. </br>
+                Thank you for participatiing.
             </p>
           </div>
         </div>
-        <% } else { %>
-          <!-- membership quiz -->
+
+        <% if (!currentUser.isadmin) { %>
           <div>
-            <h1 class="text-xl lg:text-2xl px-4 mb-5 font-thin">Answer these questions to become a
-              member!
+            <h1 class="text-sm lg:text-sm px-4">
+              <%= incorrectAnsMsg ? "Tip: His first name is 'Linus'" : "incorrectAnsMsg" %>
             </h1>
-            <div>
-              <form action="/settings/membership" method="POST" class="py-2 flex flex-col justify-center gap-3 ">
-                <div class=" px-4 w-full max-w-3/4">
-                  <h4 class="text-xl lg:text-2xl font-serif">
-                    What is the best backend proramming language?
-                  </h4>
+            <h1 class="text-xl lg:text-2xl px-4 mb-5 font-thin">Answer these question to become a
+              admin!
+            </h1>
+            <form action="/settings/admin" method="POST">
+              <div class=" px-4 w-full max-w-3/4">
+                <h4 class="text-xl lg:text-2xl font-serif">
+                  Who is the creator of linux?
+                </h4>
 
-                  <div>
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="backend" value="nodejs" required>
-                      <i class="pl-2">Nodejs</i>
-                    </label>
+                <div>
+                  <label
+                    class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                    <input type="radio" name="linux" value="microsoft" required>
+                    <i class="pl-2">Microsoft</i>
+                  </label>
 
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="backend" value="cs">
-                      <i class="pl-2">C#</i>
-                    </label>
+                  <label
+                    class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                    <input type="radio" name="linux" value="google">
+                    <i class="pl-2">Google</i>
+                  </label>
 
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="backend" value="php">
-                      <i class="pl-2">PHP</i>
-                    </label>
+                  <label
+                    class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                    <input type="radio" name="linux" value="Ken Thompson and Dennis Ritchie">
+                    <i class="pl-2">Ken Thompson and Dennis Ritchie</i>
+                  </label>
 
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="backend" value="java">
-                      <i class="pl-2">Java</i>
-                    </label>
-
-                  </div>
-                </div>
-
-                <div class="px-4 w-full max-w-3/4">
-                  <h4 class="text-xl lg:text-2xl font-serif">
-                    What is the best front-end framework?
-                  </h4>
-
-                  <div>
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="frontend" value="vuejs" required>
-                      <i class="pl-2">Vue</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="frontend" value="angular">
-                      <i class="pl-2">Angular</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="frontend" value="react">
-                      <i class="pl-2">React</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="frontend" value="none">
-                      <i class="pl-2">None of the above</i>
-                    </label>
-
-                  </div>
-
+                  <label
+                    class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                    <input type="radio" name="linux" value="Linus Torvalds">
+                    <i class="pl-2">Linus Torvalds</i>
+                  </label>
 
                 </div>
 
-                <div class=" px-4 w-full max-w-3/4">
-                  <h4 class="text-xl lg:text-2xl font-serif">
-                    Do you love proramming?
-                  </h4>
-
-                  <div>
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="programming" value="definitely" required>
-                      <i class="pl-2">Definitely</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="programming" value="of course">
-                      <i class="pl-2">Of course</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="programming" value="absolutely">
-                      <i class="pl-2">Absolutely</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="programming" value="all of the above">
-                      <i class="pl-2">All of the above</i>
-                    </label>
-
-                  </div>
-
-
-                </div>
-
-                <div class=" px-4 w-full max-w-3/4">
-                  <h4 class="text-xl lg:text-2xl font-serif">
-                    Do you think AI will replace developers?
-                  </h4>
-
-                  <div>
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="ai" value="i dont think so" required>
-                      <i class="pl-2">I dont think so</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="ai" value="it might">
-                      <i class="pl-2">It might</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="ai" value="nope">
-                      <i class="pl-2">Nope</i>
-                    </label>
-
-                    <label
-                      class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                      <input type="radio" name="ai" value="absolutely not">
-                      <i class="pl-2">Absolutely not</i>
-                    </label>
-
-                  </div>
-                </div>
-
-                <div class="px-4 w-full">
-                  <button type="submit"
-                    class=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Submit
-                  </button>
-                </div>
-              </form>
-            </div>
+              </div>
+              <div class="px-4 w-full">
+                <button type="submit"
+                  class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
           <% } %>
+
+            <% } else { %>
+              <!-- membership quiz -->
+              <div>
+                <h1 class="text-xl lg:text-2xl px-4 mb-5 font-thin">Answer these questions to become a
+                  member!
+                </h1>
+                <div>
+                  <form action="/settings/membership" method="POST" class="py-2 flex flex-col justify-center gap-3 ">
+                    <div class=" px-4 w-full max-w-3/4">
+                      <h4 class="text-xl lg:text-2xl font-serif">
+                        What is the best backend proramming language?
+                      </h4>
+
+                      <div>
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="backend" value="nodejs" required>
+                          <i class="pl-2">Nodejs</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="backend" value="cs">
+                          <i class="pl-2">C#</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="backend" value="php">
+                          <i class="pl-2">PHP</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="backend" value="java">
+                          <i class="pl-2">Java</i>
+                        </label>
+
+                      </div>
+                    </div>
+
+                    <div class="px-4 w-full max-w-3/4">
+                      <h4 class="text-xl lg:text-2xl font-serif">
+                        What is the best front-end framework?
+                      </h4>
+
+                      <div>
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="frontend" value="vuejs" required>
+                          <i class="pl-2">Vue</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="frontend" value="angular">
+                          <i class="pl-2">Angular</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="frontend" value="react">
+                          <i class="pl-2">React</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="frontend" value="none">
+                          <i class="pl-2">None of the above</i>
+                        </label>
+
+                      </div>
+
+
+                    </div>
+
+                    <div class=" px-4 w-full max-w-3/4">
+                      <h4 class="text-xl lg:text-2xl font-serif">
+                        Do you love proramming?
+                      </h4>
+
+                      <div>
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="programming" value="definitely" required>
+                          <i class="pl-2">Definitely</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="programming" value="of course">
+                          <i class="pl-2">Of course</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="programming" value="absolutely">
+                          <i class="pl-2">Absolutely</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="programming" value="all of the above">
+                          <i class="pl-2">All of the above</i>
+                        </label>
+
+                      </div>
+
+
+                    </div>
+
+                    <div class=" px-4 w-full max-w-3/4">
+                      <h4 class="text-xl lg:text-2xl font-serif">
+                        Do you think AI will replace developers?
+                      </h4>
+
+                      <div>
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="ai" value="i dont think so" required>
+                          <i class="pl-2">I dont think so</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="ai" value="it might">
+                          <i class="pl-2">It might</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="ai" value="nope">
+                          <i class="pl-2">Nope</i>
+                        </label>
+
+                        <label
+                          class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                          <input type="radio" name="ai" value="absolutely not">
+                          <i class="pl-2">Absolutely not</i>
+                        </label>
+
+                      </div>
+                    </div>
+
+                    <div class="px-4 w-full">
+                      <button type="submit"
+                        class=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <% } %>
 
 
     </div>
