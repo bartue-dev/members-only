@@ -14,7 +14,7 @@ I made this app to practice authentication using passportjs also validating form
 - connect-pg-simple = libary to connect db to session
 - tailwindcss = css styling
 
-[live app:](https://members-only-lpbj.onrender.com/)
+[live site](https://members-only-lpbj.onrender.com/)
 
 
 
