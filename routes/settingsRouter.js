@@ -10,4 +10,6 @@ settingsRouter.get("/", settingsController.getSettings);
 
 settingsRouter.post("/membership", settingsController.postMembership);
 
+settingsRouter.post("/admin", settingsController.postAdmin);
+
 module.exports = settingsRouter;
