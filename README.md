@@ -2,7 +2,7 @@
 I made this app to practice authentication using passportjs also validating forms, error handling in node and the building an app in the backend actually.
 # TECHNOLOGY USED
 - express js = app server
-- express-session = 
+- express-session
 - express-async-handler = middleware async handler
 - passport js = authentication
 - passport-local
