@@ -24,7 +24,7 @@ exports.postSignUp = [ validateSignup,  asyncHandler(async (req, res, next) => {
     });
   }
 
-  await db.signUpUser(username, hashedPassword);
+  await db.users.signUpUser(username, hashedPassword);
 
   res.redirect("/");
 
