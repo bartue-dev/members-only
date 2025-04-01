@@ -3,7 +3,7 @@ const db = require("../db/queries");
 
 exports.getPost = asyncHandler(async (req, res, next) => {
 
-  const allPost = await db.getAllPost();
+  const allPost = await db.post.getAllPost();
 
   res.render("posts", {
     title: "Posts",
@@ -14,7 +14,7 @@ exports.getPost = asyncHandler(async (req, res, next) => {
 exports.postDeletePost = asyncHandler(async (req, res, next) => {
   const { post_id } = req.params;
   
-  await db.deletePost(post_id);
+  await db.post.deletePost(post_id);
 
   res.redirect("/posts");
 });
