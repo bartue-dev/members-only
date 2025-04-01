@@ -11,7 +11,7 @@ exports.getSettings = asyncHandler(async (req, res, next) => {
 exports.postMembership = asyncHandler(async (req, res, next) => {
   const user_id = req.user.user_id;
 
-  await db.toggleMembership(user_id);
+  await db.users.toggleMembership(user_id);
 
   res.redirect("/settings");
 });
@@ -26,7 +26,7 @@ exports.postAdmin = asyncHandler(async (req, res, next) => {
       incorrectAnsMsg: true
     });
   } else {
-    await db.toggleisAdmin(user_id);
+    await db.users.toggleisAdmin(user_id);
     res.redirect("/settings");
   }
 });
