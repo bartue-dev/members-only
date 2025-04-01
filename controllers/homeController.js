@@ -6,8 +6,8 @@ const { validatePost } = require("../validator/express-validator");
 exports.getHome = asyncHandler(async (req, res, next) => {
   const user_id = req.user.user_id;
 
-  const myPost = await db.getMyPost(user_id);
-  const allUsers = await db.getAllUsers();
+  const myPost = await db.post.getMyPost(user_id);
+  const allUsers = await db.users.getAllUsers();
   
   res.render("home", {
     title: "Home",
@@ -21,7 +21,7 @@ exports.addPost = [validatePost, asyncHandler(async (req, res, next) => {
   const errors = validationResult(req);
   const { title, message} = req.body;
   const user_id = req.user.user_id;
-  const myPost = await db.getMyPost(user_id);
+  const myPost = await db.post.getMyPost(user_id);
 
   if (!errors.isEmpty()) {
     return res.status(400).render("home", {
@@ -31,7 +31,7 @@ exports.addPost = [validatePost, asyncHandler(async (req, res, next) => {
     })
   }
 
-  await db.addPost(title, message, user_id);
+  await db.post.addPost(title, message, user_id);
 
   res.redirect("/home");
 })
@@ -40,7 +40,7 @@ exports.addPost = [validatePost, asyncHandler(async (req, res, next) => {
 exports.postDeleteUser = asyncHandler(async (req, res, next) => {
   const { user_id } = req.params;
 
-  await db.deleteUser(user_id);
+  await db.users.deleteUser(user_id);
 
   res.redirect("/home")
 });
